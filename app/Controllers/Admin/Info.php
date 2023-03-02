@@ -61,6 +61,7 @@ class Info extends BaseController
                 'masa_daftar'          => $this->request->getPost('masa_daftar'),
                 'biaya'                => $this->request->getPost('biaya'),
                 'wa_konfirmasi'        => $this->request->getPost('wa_konfirmasi'),
+                'rek_konfirmasi'        => $this->request->getPost('rek_konfirmasi'),
                 'mulai_kbm'            => $this->request->getPost('mulai_kbm'),
                 'launching'             => $this->request->getPost('launching'),
                 'mabit'                 => $this->request->getPost('mabit'),
@@ -100,6 +101,7 @@ class Info extends BaseController
             'masa_daftar'          => $this->request->getPost('masa_daftar'),
             'biaya'                => $this->request->getPost('biaya'),
             'wa_konfirmasi'        => $this->request->getPost('wa_konfirmasi'),
+            'rek_konfirmasi'        => $this->request->getPost('rek_konfirmasi'),
             'mulai_kbm'            => $this->request->getPost('mulai_kbm'),
             'launching'             => $this->request->getPost('launching'),
             'mabit'                 => $this->request->getPost('mabit'),
@@ -175,6 +177,7 @@ class Info extends BaseController
             'id_info'               => $id_info,
             'biaya'            => $this->request->getPost('biaya'),
             'wa_konfirmasi'            => $this->request->getPost('wa_konfirmasi'),
+            'rek_konfirmasi'            => $this->request->getPost('rek_konfirmasi'),
 
 
         );

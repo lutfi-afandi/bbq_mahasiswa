@@ -139,6 +139,7 @@
                         <tr>
                             <th>BIAYA</th>
                             <th>NOMOR KONFIRMASI</th>
+                            <th>Rekening KONFIRMASI</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -147,6 +148,7 @@
                                 <label class="btn btn-primary btn-pill"><?= $info['biaya'];  ?> K</label>
                             </td>
                             <td><?= $info['wa_konfirmasi'];  ?></td>
+                            <td><?= $info['rek_konfirmasi'];  ?></td>
                         </tr>
                     </tbody>
                 </table>

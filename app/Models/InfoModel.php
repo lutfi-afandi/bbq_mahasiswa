@@ -7,6 +7,13 @@ use phpDocumentor\Reflection\Types\This;
 
 class InfoModel extends Model
 {
+    protected $DBGroup          = 'default';
+    protected $table            = 'info';
+    protected $primaryKey       = 'id_info';
+    protected $allowedFields    = [
+        'gelombang', 'tahun_ajar', 'masa_daftar', ' status_pendaftaran', ' biaya', 'wa_konfirmasi', 'mulai_kbm', ' launching', ' mabit', ' jalasah', ' talkshow', 'cp1', 'nama_cp1', 'cp2', 'nama_cp2', 'pamflet', 'deskripsi'
+    ];
+
     // protected $table = 'info';
     public function getInfo($id_info = false)
     {

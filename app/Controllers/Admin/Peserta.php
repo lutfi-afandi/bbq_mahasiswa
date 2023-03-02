@@ -15,6 +15,7 @@ class Peserta extends BaseController
             'title' => 'Data Peserta',
             'isi'   => 'admin/peserta/v_list',
             'peserta'   => $this->PesertaModel->getPeserta(),
+            'info'    => $this->InfoModel->getInfo(),
             'peserta_baru'   => $this->PesertaModel->getPeserta_baru(),
         ];
 
