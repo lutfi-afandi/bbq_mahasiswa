@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-12">
+    <div class="col-md-6">
         <!-- Default box -->
         <div class="card">
             <div class="card-header pb-1 card-footer">
@@ -15,7 +15,7 @@
             <div class="card-body">
                 <form action="<?= base_url('Admin/User/tambah'); ?>" method="POST">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group  <?= ($validation->hasError('username')) ? 'has-error' : ''; ?>" required>
                                 <label>Username</label>
                                 <input type="text" name="username" class="form-control" autofocus value="<?= old('username'); ?>">
@@ -25,20 +25,20 @@
                             </div>
 
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label>Nama Lengkap</label>
                                 <input type="text" name="nama_user" class="form-control" required>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label>Nomor WA</label>
                                 <input type="number" name="no_wa" class="form-control" required>
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label>Jenis Kelamin</label>
                                 <select name="jk_user" id="jk" class="form-control" required>

@@ -36,6 +36,7 @@
             "info": true,
             "autoWidth": false,
             "responsive": true,
+            "pageLength": 25
         })
         $('#example2').DataTable({
             "paging": true,

@@ -132,6 +132,7 @@ class Register extends BaseController
                 'id_kelas'             => $this->request->getPost('id_kelas'),
                 'kelancaran_mengaji'   => $this->request->getPost('kelancaran_mengaji'),
                 'gelombang'          => $this->request->getPost('gelombang'),
+                'tahun_ajar'    => $gelombang['tahun_ajar'],
                 // 'jadwal_kuliah'     => $upload->getRandomName(),
                 'jadwal_kuliah'     => $newname . '.' . $ext
             );

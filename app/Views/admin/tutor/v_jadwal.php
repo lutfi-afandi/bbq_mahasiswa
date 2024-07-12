@@ -1,10 +1,10 @@
-<div class="card card-primary card-outline">
-    <div class="card-header">
-        <center class="m-0"><strong>CETAK DATA TUTOR</strong></center>
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-6">
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+                <center class="m-0"><strong>CETAK DATA TUTOR</strong></center>
+            </div>
+            <div class="card-body">
                 <div class="form-row">
                     <div class="col">
                         <select id="gelombang" class="form-control">
@@ -18,19 +18,17 @@
                         <button class="btn btn-primary " id="submit" onclick="cetakTutor()"><i class="fa fa-file-excel"></i> Export Data Tutor</button>
                     </div>
                 </div>
+
             </div>
         </div>
-
     </div>
-</div>
 
-<div class="card card-success card-outline">
-    <div class="card-header">
-        <center class="m-0"><strong>CETAK DATA KELOMPOK</strong></center>
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-8">
+    <div class="col-md-6">
+        <div class="card card-success card-outline">
+            <div class="card-header">
+                <center class="m-0"><strong>CETAK DATA KELOMPOK</strong></center>
+            </div>
+            <div class="card-body">
                 <div class="form-row">
                     <div class="col">
                         <select id="gelombangk" class="form-control">
@@ -44,11 +42,14 @@
                         <button class="btn btn-success " id="submit" onclick="cetakKelompok()"><i class="fa fa-file-excel"></i> Export Data Kelompok</button>
                     </div>
                 </div>
+
             </div>
         </div>
-
     </div>
 </div>
+
+
+
 
 
 <div class="card card-fuchsia card-outline">
@@ -62,167 +63,59 @@
         </div>
     </div>
     <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-striped table-hover table-sm text-nowrap" width="100%" id="example1">
-                <thead class="bg-fuchsia">
-                    <tr>
-                        <th width="5%" class="text-center">No</th>
-                        <th width="10%">Username</th>
-                        <th width="50%">Nama Tutor</th>
-                        <th width="10%">Jadwal</th>
-                        <th class="text-center">Gel</th>
-                        <th>Peserta</th>
-                        <th class=" text-center">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody class="">
-                    <?php
-                    $db = \Config\Database::connect();
-                    foreach ($jadwal as $key => $row) { ?>
-                        <?php $jml = $db->table('kelompok_kbm')->where('jadwal_id', $row['id_jadwal'])->countAllResults(); ?>
-                        <tr class="">
-                            <th class="text-center" scope="row"><?php echo $key + 1; ?></th>
-                            <td><?php if (empty($row['id_jadwal'])) {
-                                    echo 'belum dijadwalkan';
-                                } else {
-                                    echo $row['username'];
-                                }
-                                ?></td>
-                            <td><?php echo $row['nama_user']; ?></td>
-                            <td class=""><?php echo $row['hari']; ?> - <?php echo $row['jam']; ?></td>
-                            <td class="text-center"><?= $row['gel_jadwal']; ?></td>
-                            <td>
-                                <a href="<?= base_url('Admin/JadwalTutor/kelompok/' . $row['id_jadwal']); ?>" class="btn btn-xs btn-success">
-                                    <?= $jml; ?> | Peserta
-                                </a>
-                            </td>
-                            <td class="text-center">
-                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editData<?= $row['id_jadwal']; ?>" title="Edit Data"><i class="fa fa-edit"></i></button>
-                                <abbr title="Hapus Jadwal Tutor">
-                                    <a onclick="konfimasi('<?= $row['id_jadwal']; ?>')" title="Hapus Data" class="btn btn-danger btn-sm "><i class="fa fa-trash"></i></a>
-                                </abbr>
-                            </td>
-                        </tr>
-                    <?php } ?>
+        <div class="callout callout-info">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="">Pilih Tahun Ajar :</label>
+                        <?php
+                        $tahunSekarang = date("Y") + 1;
+                        $daftarTahun = range(2020, $tahunSekarang);
+                        $daftarTahun = array_reverse($daftarTahun);
+                        ?>
+                        <select name="tahun_ajar" id="tahun_ajar" class="form-control">
+                            <option value="" hidden>Pilih Tahun Ajar</option>
+                            <?php foreach ($daftarTahun as $tahun) {
+                                $tahunDepan = $tahun + 1;
+                                $tahun_ajar = $tahun . '/' . $tahunDepan; ?>
+                                <option value="<?= $tahun_ajar; ?>" <?= ($tahun_ajar == $tahun_ajar_dipilih) ? 'selected' : ''; ?>>
+                                    <?= $tahun_ajar; ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                        <span id="error-tahun-ajar" class="error-message" style="display:none; color: red;">Pilih tahun ajar</span>
 
-                </tbody>
-            </table>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Pilih Gelombang :</label>
+
+                        <select name="tahun" id="gelombang-fil" class="form-control">
+                            <option value="" hidden>Pilih Gelombang</option>
+                            <option value="1" <?= $gelombang_dipilih == 1 ? 'selected' : ''; ?>>1</option>
+                            <option value="2" <?= $gelombang_dipilih == 2 ? 'selected' : ''; ?>>2</option>
+                            <option value="3" <?= $gelombang_dipilih == 3 ? 'selected' : ''; ?>>3</option>
+                        </select>
+                        <span id="error-gelombang" class="error-message" style="display:none; color: red;">Gelombang harus dipilih</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for=""> Filter</label>
+                        <button id="btn-submit" onclick="filter()" class="form-control btn btn-primary"><i class="fa fa-filter"></i></button>
+                    </div>
+                </div>
+            </div>
+
         </div>
+        <?php if ($jadwal !== null) {
+            echo $this->include('admin/tutor/data');
+        } ?>
     </div>
 </div>
 
 
-<!-- MODAL TAMBAH -->
-<div class="modal fade" tabindex="1" id="add">
-    <div class="modal-dialog ">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Add Jadwal</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span></button>
-            </div>
-            <div class="modal-body">
-                <?= form_open('Admin/JadwalTutor/add') ?>
-                <div class="form-group">
-                    <label for="tutor">Tutor</label>
-                    <select name="id_tutor" id="id_tutor" class="form-control" required>
-                        <option value="">-Pilih Tutor-</option>
-                        <?php foreach ($tutor as $key => $t) { ?>
-                            <option value="<?= $t['id_user']; ?>"><?= $t['username'] . " - " . $t['nama_user']; ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="tutor">Waktu</label>
-                    <select name="waktu_id" id="waktu_id" class="form-control" required>
-                        <option value="">-Pilih Waktu-</option>
-                        <?php foreach ($waktu as $key => $w) { ?>
-                            <option value="<?= $w['id_waktu']; ?>"><?= $w['hari'] . " - " . $w['jam']; ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="tutor">Gelombang </label>
-                    <select name="gel_jadwal" id="gel_jadwal" class="form-control" required>
-                        <option value="">-Pilih gelombang-</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
-                </div>
-            </div>
-            <div class="modal-footer bg-whitesmoke br">
-                <button type="submit" type="button" class="btn btn-primary">Simpan</button>
-            </div>
-            <?= form_close(); ?>
-        </div>
-    </div>
-</div>
-
-
-<!-- MODAL HAPUs -->
-<?php
-foreach ($jadwal as $key => $value) { ?>
-    <script>
-        function konfimasi(parameter_id) {
-            Swal.fire({
-                title: 'Anda Yakin?',
-                text: "Hapus Jadwal <?= $value['nama_user'] . " [" . $value['hari']  ?>]",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Hapus!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "<?= base_url('Admin/JadwalTutor/delete'); ?>" + "/" + parameter_id;
-                }
-            })
-        }
-    </script>
-<?php } ?>
-
-<!-- Modal edit data -->
-<?php
-foreach ($jadwal as $key => $value) { ?>
-    <div class="modal fade" tabindex="1" id="editData<?= $value['id_jadwal']; ?>">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Edit Data</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span></button>
-                </div>
-                <div class="modal-body">
-                    <?= form_open('Admin/JadwalTutor/ubahdata/' . $value['id_jadwal']); ?>
-                    <div class="form-group">
-                        <label for="tutor">Tutor</label>
-                        <select name="id_tutor" id="id_tutor" class="form-control">
-                            <option value="">-Pilih Tutor-</option>
-                            <?php foreach ($tutor as $key => $t) { ?>
-                                <option value="<?= $t['id_user']; ?>" <?= ($value['id_tutor'] == $t['id_user']) ? "selected" : ""; ?>><?= $t['username'] . " - " . $t['nama_user']; ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="tutor">Waktu</label>
-                        <select name="waktu_id" id="waktu_id" class="form-control">
-                            <option value="">-Pilih Waktu-</option>
-                            <?php foreach ($waktu as $key => $w) { ?>
-                                <option value="<?= $w['id_waktu']; ?>" <?= ($value['waktu_id'] == $w['id_waktu']) ? "selected" : ""; ?>><?= $w['hari'] . " - " . $w['jam']; ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer bg-whitesmoke br">
-                    <button type="submit" type="button" class="btn btn-primary">Simpan</button>
-                </div>
-                <?= form_close(); ?>
-            </div>
-        </div>
-    </div>
-<?php }
-?>
 
 <script>
     function cetakTutor() {
@@ -244,6 +137,29 @@ foreach ($jadwal as $key => $value) { ?>
             window.open(url, '_blank');
         } else {
             alert('Pilih Gelombang BBQ terlebih Dahulu');
+        }
+    }
+
+    function filter() {
+        var isValid = true;
+        var tahun_ajar = $('#tahun_ajar').val();
+        var gelombang = $('#gelombang-fil').val();
+
+        $('.error-message').hide();
+
+        if (tahun_ajar === '') {
+            $('#error-tahun-ajar').show();
+            isValid = false;
+        }
+
+        if (gelombang === '') {
+            $('#error-gelombang').show();
+            isValid = false;
+        }
+
+        if (isValid) {
+            // console.log(tahun_ajar, gelombang);
+            window.location.href = "?gelombang=" + gelombang + '&tahun_ajar=' + tahun_ajar;
         }
     }
 </script>

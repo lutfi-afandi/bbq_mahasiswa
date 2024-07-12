@@ -1,19 +1,16 @@
-<div class="card card-primary card-outline">
+<div class="card card-primary card-outline col-md-6">
     <div class="card-header text-center p-2">
         <h5 class="text-uppercase mb-0">Pendaftaran Peserta BBQ</h5>
 
     </div>
-    <div class="card-body">
+    <div class="card-body ">
         <!-- Form -->
         <form class="user" method="post" action="<?= base_url('Admin/Peserta/update/' . $peserta['id_peserta']) ?>" enctype="multipart/form-data">
             <?= csrf_field() ?>
             <div class="form-group ">
                 <div class="row">
-                    <div class="col-sm-4 mt-2 ">
+                    <div class="col-sm-12 mt-2 ">
                         <label class="text-center" for="pilihGelombang">Gelombang</label>
-                    </div>
-
-                    <div class="col-sm-8">
                         <select class="custom-select mr-sm-2 <?= ($validation->hasError('gelombang')) ? 'is-invalid' : ''; ?>" name="gelombang" id="pilihGelombang">
                             <option value=" ">Pilih Gelombang BBQ</option>
                             <option value="1" <?= ($peserta['gelombang'] == '1') ? 'selected' : ''; ?>>1</option>
@@ -24,11 +21,12 @@
                             <?= $validation->getError('gelombang'); ?>
                         </div>
                     </div>
+
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label for="">NPM</label>
                         <input type="text" name="npm_peserta" class="form-control  <?= ($validation->hasError('npm_peserta')) ? 'is-invalid' : ''; ?>" id="npm_peserta" placeholder="NPM" value="<?= $peserta['npm_peserta'] ?>">
@@ -37,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label for="">Nama Lengkap</label>
                         <input type="text" name="nama_peserta" class="form-control <?= ($validation->hasError('nama_peserta')) ? 'is-invalid' : ''; ?>" id="exampleFirstName" placeholder="Nama Lengkap" value="<?= $peserta['nama_peserta'] ?>">
@@ -46,7 +44,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label for="">Nomor WA</label>
                         <input type="text" name="nomor_wa" class="form-control <?= ($validation->hasError('nomor_wa')) ? 'is-invalid' : ''; ?>" id="exampleInputTelepon" placeholder="Nomor WhatsApp" value="<?= $peserta['nomor_wa'] ?>">
@@ -55,7 +53,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <!-- pilihan jenis Kelamin -->
                     <div class="form-group ">
                         <label class="text-center" for="pilihJenisKelamin">Jenis Kelamin</label>
@@ -70,7 +68,7 @@
 
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <!-- pilihan jurusan -->
                     <div class="form-group ">
                         <label class="text-center" for="pilihJurusan">Jurusan</label>
@@ -85,7 +83,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <!-- pilihan Kelas -->
                     <div class="form-group ">
                         <label class="text-center" for="pilihKelas">Kelas</label>
@@ -100,7 +98,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <!-- pilihan Kelancaran -->
                     <div class="form-group ">
                         <label class="text-center" for="pilihKelancaran">Kelancaran Mengaji</label>

@@ -9,8 +9,6 @@
 	<title><?= $title; ?></title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<!-- Bootstrap 3.3.7 -->
-	<link rel="stylesheet" href="<?= base_url(); ?>/template/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 
 
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -78,37 +76,40 @@
 
 	<!-- Nav -->
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary layout-footer-fixed">
-		<img src="<?php echo base_url(); ?>/template/img/brand.png" class="navbar-brand pt-0 pb-0" alt="" width="50px">
-		<button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarCollapse">
-			<ul class="navbar-nav text-center ml-auto mt-2 mt-lg-0 text-uppercase ">
-				<li class="nav-item active mr-2">
-					<a class="nav-link" href="#">Beranda <span class="sr-only">(current)</span></a>
-				</li>
-				<li class="nav-item mr-2">
-					<a class="nav-link text-white" href="#info">Info</a>
-				</li>
-				<li class="nav-item mr-2">
-					<a class="nav-link text-white" href="#kegiatan" tabindex="-1">Kegiatan</a>
-				</li>
-				<li class="nav-item mr-2">
-					<a class="nav-link  text-white" href="#kontak" tabindex="-1">Kontak</a>
-				</li>
-				<?php if (session()->get('level') == '') { ?>
-					<li class="nav-item mr-2">
-						<a class="nav-link btn btn-success btn-sm  text-white hover rounded-pill mb-1 " href="<?= base_url('Login'); ?>" tabindex="-1">Login</a>
+		<div class="container">
+			<img src="<?php echo base_url(); ?>/template/img/brand.png" class="navbar-brand pt-0 pb-0" alt="" width="50px">
+			<button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+				<ul class="navbar-nav text-center ml-auto mt-2 mt-lg-0 text-uppercase ">
+					<li class="nav-item active mr-2">
+						<a class="nav-link" href="#">Beranda <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item mr-2">
-						<a class="nav-link btn btn-danger btn-sm hover rounded-pill text-white" href="<?= base_url('Peserta/Register'); ?>" tabindex="-1">Daftar</a>
+						<a class="nav-link text-white" href="#info">Info</a>
 					</li>
-				<?php } else { ?>
-					<a class="nav-link btn btn-info btn-sm hover rounded-pill text-white" href="<?= base_url('Login'); ?>" tabindex="-1">Dashboard</a>
-				<?php } ?>
+					<li class="nav-item mr-2">
+						<a class="nav-link text-white" href="#kegiatan" tabindex="-1">Kegiatan</a>
+					</li>
+					<li class="nav-item mr-2">
+						<a class="nav-link  text-white" href="#kontak" tabindex="-1">Kontak</a>
+					</li>
+					<?php if (session()->get('level') == '') { ?>
+						<li class="nav-item mr-2">
+							<a class="nav-link btn btn-success btn-sm  text-white hover rounded-pill mb-1 " href="<?= base_url('Login'); ?>" tabindex="-1">Login</a>
+						</li>
+						<li class="nav-item mr-2">
+							<a class="nav-link btn btn-danger btn-sm hover rounded-pill text-white" href="<?= base_url('Peserta/Register'); ?>" tabindex="-1">Daftar</a>
+						</li>
+					<?php } else { ?>
+						<a class="nav-link btn btn-info btn-sm hover rounded-pill text-white" href="<?= base_url('Login'); ?>" tabindex="-1">Dashboard</a>
+					<?php } ?>
 
-			</ul>
+				</ul>
+			</div>
 		</div>
+
 	</nav>
 
 	<!-- header -->

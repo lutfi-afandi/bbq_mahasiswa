@@ -14,11 +14,27 @@ class Peserta extends BaseController
         $data = [
             'title' => 'Data Peserta',
             'isi'   => 'admin/peserta/v_list',
-            'peserta'   => $this->PesertaModel->getPeserta(),
+            // 'peserta'   => $this->PesertaModel->getPeserta(),
             'info'    => $this->InfoModel->getInfo(),
             'peserta_baru'   => $this->PesertaModel->getPeserta_baru(),
         ];
 
+        $pesertaAll =  $this->PesertaModel->getPeserta();
+        $gelombang = isset($_GET['gelombang']) ? $_GET['gelombang'] : '';
+        $tahun_ajar = isset($_GET['tahun_ajar']) ? $_GET['tahun_ajar'] : '';
+        if (isset($_GET['tahun_ajar'])) {
+            $data['peserta'] = array_filter($pesertaAll, function ($peserta) use ($gelombang, $tahun_ajar) {
+                return $peserta['gelombang'] == $gelombang &&
+                    $peserta['tahun_ajar'] == $tahun_ajar;
+            });
+            $data['tahun_ajar_dipilih'] = $tahun_ajar;
+            $data['gelombang_dipilih'] = $gelombang;
+        } else {
+            $data['peserta'] = null;
+            $data['tahun_ajar_dipilih'] = '';
+            $data['gelombang_dipilih'] = '';
+        }
+        // dd($data['peserta']);
         return view('layout/v_wrapper', $data);
     }
     public function data_kbm()
@@ -26,10 +42,27 @@ class Peserta extends BaseController
         $data = [
             'title' => 'Data Peserta',
             'isi'   => 'admin/peserta/v_kbm',
-            'peserta_kbm'   => $this->PesertaModel->get_detailKbm(),
+            // 'peserta_kbm'   => $this->PesertaModel->get_detailKbm(),
             'peserta_baru'   => $this->PesertaModel->getPeserta_baru(),
         ];
 
+        $pesertaKbm =  $this->PesertaModel->get_detailKbm();
+        $gelombang = isset($_GET['gelombang']) ? $_GET['gelombang'] : '';
+        $tahun_ajar = isset($_GET['tahun_ajar']) ? $_GET['tahun_ajar'] : '';
+        if (isset($_GET['tahun_ajar'])) {
+            $data['peserta_kbm'] = array_filter($pesertaKbm, function ($peserta_kbm) use ($gelombang, $tahun_ajar) {
+                return $peserta_kbm['gelombang'] == $gelombang &&
+                    $peserta_kbm['tahun_ajar'] == $tahun_ajar;
+            });
+            $data['tahun_ajar_dipilih'] = $tahun_ajar;
+            $data['gelombang_dipilih'] = $gelombang;
+        } else {
+            $data['peserta_kbm'] = null;
+            $data['tahun_ajar_dipilih'] = '';
+            $data['gelombang_dipilih'] = '';
+        }
+
+        // dd($data['peserta_kbm'], $pesertaKbm);
         return view('layout/v_wrapper', $data);
     }
 

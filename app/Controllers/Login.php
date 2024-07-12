@@ -40,6 +40,7 @@ class Login extends BaseController
                 ]
             ],
         ]);
+
         if ($valid) {
             $cek_admin = $this->AuthModel->login_admin($username, $password);
             $cek_tutor = $this->AuthModel->login_tutor($username, $password);

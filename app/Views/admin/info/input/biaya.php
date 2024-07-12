@@ -23,12 +23,12 @@
                             <input type="text" name="wa_konfirmasi" class="form-control" id="inlineFormInputGroup" placeholder="8xxxxxx" value="<?= $info['wa_konfirmasi']; ?>">
                         </div>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="rek_konfirmasi">Rekening :</label>
                         <div class="input-group mb-2">
-                            <input type="text" name="rek_konfirmasi" class="form-control" id="inlineFormInputGroup" value="<?= $info['rek_konfirmasi']; ?>">
+                            <input type="text" name="rek_konfirmasi" class="form-control" id="inlineFormInputGroup" value="">
                         </div>
-                    </div>
+                    </div> -->
 
 
                 </div>

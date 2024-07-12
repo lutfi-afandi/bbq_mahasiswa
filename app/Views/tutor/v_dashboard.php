@@ -1,11 +1,17 @@
    <div class="container-fluid">
+       <div class="callout callout-info info-box p-3 pl-3">
+           <i class="fa fa-calendar-alt fa-4x text-primary"></i>
+           <div class="info-box-content ">
+               <h3 class="info-box-number mb-0">Jadwal BBQ</h3>
+               <h4 class="info-box-text ">Gelombang : <?= $info['gelombang']; ?> - <?= $info['tahun_ajar']; ?></h4>
+           </div>
 
+       </div>
        <div class="row">
 
            <?php
             if (empty($jadwal)) { ?>
                <div class="col-md-12">
-
                    <div class="jumbotron jumbotron-fluid">
                        <div class="container text-danger">
                            <h1 class="display-4"><i class="fas fa-exclamation-triangle"></i> Afwan</h1>

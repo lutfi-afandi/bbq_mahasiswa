@@ -18,7 +18,21 @@
                     </div>
                     <div class="form-group">
                         <label for="">Tahun Ajaran</label>
-                        <input type="text" name="tahun_ajar" class="form-control" value="<?= $info['tahun_ajar']; ?>">
+                        <?php
+                        $tahunSekarang = date("Y") + 1;
+                        $daftarTahun = range(2020, $tahunSekarang);
+                        $daftarTahun = array_reverse($daftarTahun);
+                        ?>
+                        <select name="tahun_ajar" id="tahun_ajar" class="form-control">
+                            <option value="" hidden>Pilih Tahun Ajar</option>
+                            <?php foreach ($daftarTahun as $tahun) {
+                                $tahunDepan = $tahun + 1;
+                                $tahun_ajar = $tahun . '/' . $tahunDepan; ?>
+                                <option value="<?= $tahun_ajar; ?>" <?= ($tahun_ajar == $info['tahun_ajar']) ? 'selected' : ''; ?>>
+                                    <?= $tahun_ajar; ?>
+                                </option>
+                            <?php } ?>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="">Masa Pendaftaran</label>

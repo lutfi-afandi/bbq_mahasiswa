@@ -28,12 +28,12 @@
                             <?php $i = 1;
                             foreach ($peserta_kbm as $key => $row) { ?>
                                 <tr class="" for="check">
-                                    <th class="text-center"><?php echo $i++; ?></th>
-                                    <td class="align-middle"><?php echo $row['npm_peserta']; ?></td>
-                                    <td class="align-middle"><?php echo $row['nama_peserta']; ?></td>
-                                    <td class="align-middle"><?php echo $row['kode_jurusan']; ?> - <?php echo $row['kelas']; ?></td>
-                                    <td class="align-middle"><?php echo $row['kelancaran_mengaji']; ?></td>
-                                    <td class="align-middle"><?php echo $row['jk']; ?></td>
+                                    <th class="text-center"><?= $i++; ?></th>
+                                    <td class="align-middle"><?= $row['npm_peserta']; ?></td>
+                                    <td class="align-middle"><?= $row['nama_peserta']; ?></td>
+                                    <td class="align-middle"><?= $row['kode_jurusan']; ?> - <?= $row['kelas']; ?></td>
+                                    <td class="align-middle"><?= $row['kelancaran_mengaji']; ?></td>
+                                    <td class="align-middle"><?= $row['jk']; ?></td>
                                     <td class="align-middle">
                                         <a href="<?= base_url('Admin/JadwalTutor/hapusdari/' . $row['id_kelompok'] . "/" . $jadwal['id_jadwal']); ?>" class="btn btn-xs btn-outline-danger"><i class="fa fa-trash"></i></a>
 
@@ -77,12 +77,12 @@
                                     if ($row['jk'] != $jadwal['jk_user']) continue; ?>
                                     <tr class="" for="check[]">
                                         <td class="text-center" scope="row"> <input style="" type="checkbox" id="check" name="id_peserta[]" value="<?= $row['id_peserta']; ?>"></td>
-                                        <td class="align-middle"><?php echo $row['gelombang']; ?></td>
-                                        <td><?php echo $row['npm_peserta']; ?></td>
-                                        <td><?php echo $row['nama_peserta']; ?></td>
-                                        <td><?php echo $row['kode_jurusan']; ?> - <?php echo $row['kelas']; ?></td>
-                                        <td><?php echo $row['kelancaran_mengaji']; ?></td>
-                                        <td><?php echo $row['jk']; ?></td>
+                                        <td class="align-middle"><?= $row['gelombang']; ?></td>
+                                        <td><?= $row['npm_peserta']; ?></td>
+                                        <td><?= $row['nama_peserta']; ?></td>
+                                        <td><?= $row['kode_jurusan']; ?> - <?= $row['kelas']; ?></td>
+                                        <td><?= $row['kelancaran_mengaji']; ?></td>
+                                        <td><?= $row['jk']; ?></td>
                                     </tr>
                                 <?php } ?>
 

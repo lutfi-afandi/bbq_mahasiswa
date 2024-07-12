@@ -12,20 +12,38 @@ class JadwalTutor extends BaseController
     {
         $data = [
             'title' => 'Jadwal Tutor',
-            'jadwal'    => $this->JadwalModel->getJadwal(),
+            // 'jadwal'    => $this->JadwalModel->getJadwal(),
             'tutor'     => $this->UserModel->getTutor(),
             'waktu'     => $this->JadwalModel->getWaktu(),
             'isi'   => 'admin/tutor/v_jadwal',
         ];
+
+        $jadwalAll = $this->JadwalModel->getJadwal();
+        $gelombang = isset($_GET['gelombang']) ? $_GET['gelombang'] : '';
+        $tahun_ajar = isset($_GET['tahun_ajar']) ? $_GET['tahun_ajar'] : '';
+        if (isset($_GET['tahun_ajar'])) {
+            $data['jadwal'] = array_filter($jadwalAll, function ($jadwal) use ($gelombang, $tahun_ajar) {
+                return $jadwal['gel_jadwal'] == $gelombang &&
+                    $jadwal['tahun_ajar_jadwal'] == $tahun_ajar;
+            });
+            $data['tahun_ajar_dipilih'] = $tahun_ajar;
+            $data['gelombang_dipilih'] = $gelombang;
+        } else {
+            $data['jadwal'] = null;
+            $data['tahun_ajar_dipilih'] = '';
+            $data['gelombang_dipilih'] = '';
+        }
         return view('layout/v_wrapper', $data);
     }
 
     public function add()
     {
+        $info = $this->db->query("SELECT * FROM info ORDER BY id_info DESC")->getRowArray();
         $data = array(
             'id_tutor'    => $this->request->getPost('id_tutor'),
             'waktu_id'    => $this->request->getPost('waktu_id'),
             'gel_jadwal'    => $this->request->getPost('gel_jadwal'),
+            'tahun_ajar_jadwal'    => $info['tahun_ajar'],
         );
 
         $this->JadwalModel->tambah($data);
@@ -58,15 +76,24 @@ class JadwalTutor extends BaseController
 
     public function kelompok($id_jadwal)
     {
+        $info =  $this->db->query("SELECT * FROM info ORDER BY id_info DESC")->getRowArray();
         $data = [
             'title' => 'Kelompok ',
             'jadwal'    => $this->JadwalModel->getJadwal($id_jadwal),
-            'peserta_baru'  => $this->PesertaModel->getPeserta_baru(),
+            // 'peserta_baru'  => $this->PesertaModel->getPeserta_baru(),
             'peserta_kbm'   => $this->PesertaModel->getPeserta_kbm($id_jadwal),
             'isi'   => 'admin/tutor/v_kelompok',
         ];
 
-        // dd($data['peserta_kbm']);
+        $peserta_baruAll  = $this->PesertaModel->getPeserta_baru();
+        $gelombang = $info['gelombang'];
+        $tahun_ajar = $info['tahun_ajar'];
+
+        $data['peserta_baru'] = array_filter($peserta_baruAll, function ($peserta_baru) use ($gelombang, $tahun_ajar) {
+            return $peserta_baru['gelombang'] == $gelombang &&
+                $peserta_baru['tahun_ajar'] == $tahun_ajar;
+        });
+        // dd($data['peserta_baru']);
         return view('layout/v_wrapper', $data);
     }
 
